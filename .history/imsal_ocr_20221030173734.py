@@ -1,12 +1,22 @@
+# details in the readme file
 import pytesseract
+# pip install pillow
 from PIL import Image
-import re
+import arabic_reshaper
+from bidi.algorithm import get_display
+
 img = "./assets/pr.png"
 img = Image.open(img)
+# Arabic words reshaper
+def arabic(text):
+    reshaped_text = arabic_reshaper.reshape(text)    # correct its shape
+    bidi_text = get_display(reshaped_text)   
+    return bidi_text
+#OCR
+ocr_result = pytesseract.image_to_string(img, lang='eng+ara')
 
-ocr_result = pytesseract.image_to_string(img)
-
-list1 = ocr_result.split("\n")
+# get text as array
+list1 = arabic(ocr_result).split("\n")
 list1 = [el for el in list1 if el.strip()]
 
 prayersTime =[] 
@@ -22,5 +32,5 @@ print("month:",dict['month'])
 for i in dict['prayersTime']:
     print("day:",i)
 for i in dict['prayerNames']:
-    print("lang1:",i)
+    print("lang:",i)
 

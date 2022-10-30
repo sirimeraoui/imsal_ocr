@@ -7,15 +7,14 @@ from bidi.algorithm import get_display
 
 img = "./assets/pr.png"
 img = Image.open(img)
-# Arabic words reshaper
+
+ocr_result = pytesseract.image_to_string(img, lang='eng+ara')
 def arabic(text):
     reshaped_text = arabic_reshaper.reshape(text)    # correct its shape
     bidi_text = get_display(reshaped_text)   
     return bidi_text
-#OCR
-ocr_result = pytesseract.image_to_string(img, lang='eng+ara')
 
-# get text as array
+
 list1 = arabic(ocr_result).split("\n")
 list1 = [el for el in list1 if el.strip()]
 
@@ -32,5 +31,5 @@ print("month:",dict['month'])
 for i in dict['prayersTime']:
     print("day:",i)
 for i in dict['prayerNames']:
-    print("lang:",i)
+    print("langs:",i)
 

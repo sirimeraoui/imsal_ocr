@@ -1,5 +1,6 @@
 #go to https://github.com/UB-Mannheim/tesseract/wiki
 #install tesseract 4 64x
+add as path variable => C:\ProgramFiles\Tesseract-OCR
 #pip install pytesseract
 import pytesseract
 # pip install pillow
@@ -8,7 +9,7 @@ from PIL import Image
 img = "./assets/pr.png"
 img = Image.open(img)
 
-ocr_result = pytesseract.image_to_string(img)
+ocr_result = pytesseract.image_to_string(img, lang='ara')
 
 list1 = ocr_result.split("\n")
 list1 = [el for el in list1 if el.strip()]

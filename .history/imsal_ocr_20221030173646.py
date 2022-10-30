@@ -12,10 +12,10 @@ def arabic(text):
     reshaped_text = arabic_reshaper.reshape(text)    # correct its shape
     bidi_text = get_display(reshaped_text)   
     return bidi_text
-#OCR
 ocr_result = pytesseract.image_to_string(img, lang='eng+ara')
 
-# get text as array
+
+
 list1 = arabic(ocr_result).split("\n")
 list1 = [el for el in list1 if el.strip()]
 
